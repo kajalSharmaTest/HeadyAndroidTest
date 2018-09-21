@@ -2,6 +2,7 @@ package heady.com.headyandroidtest.model;
 
 /**
  * Created by Kajal on 17/09/2018.
+ * Common object to retrieve Category object from server.
  */
 
 public class Category

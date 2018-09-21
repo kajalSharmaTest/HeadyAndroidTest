@@ -11,6 +11,7 @@ import heady.com.headyandroidtest.model.Rankings;
 
 /**
  * Created by Kajal on 9/17/2018.
+ * Dao to handle rankings table database querries
  */
 
     @Dao

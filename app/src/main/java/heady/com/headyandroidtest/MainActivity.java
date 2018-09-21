@@ -109,6 +109,10 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
             }
         }
 
+    /*
+     * initially display all the products loaded from server and stored in DB ,
+     * later the user can select as per ranking and categories.
+     */
     private void selectFirstItemAsDefault(ArrayList<Products> productList) {
         if (mNavigationManager != null) {
             mNavigationManager.showProductFragment(productList);
@@ -116,10 +120,18 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
         }
     }
 
+    /*
+      method to initialise drawer ititial items (Category , Rankings
+      (Not the sub items that will be loaded later from server))
+    */
+
     private void initItems() {
         items = getResources().getStringArray(R.array.drawer_menu_items);
     }
 
+    /*
+      method to load initial content on app launch
+    */
     private void loadInitialData(){
         mCategoryPresenter.showSpinner(true);
         mCategoriesPresenter.loadCategories();
@@ -127,30 +139,33 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
         mProductPresenter.loadProducts();
     }
 
+    /*
+     * setting the drawer menu adapter and its click listeners to close and expand drawer
+     */
     private void addDrawerItems() {
         mExpandableListAdapter = new CustomExpandableListAdapter(this, mExpandableListTitle, mExpandableListData);
         mExpandableListView.setAdapter(mExpandableListAdapter);
         mExpandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
-               // getSupportActionBar().setTitle(mExpandableListTitle.get(groupPosition).toString());
             }
         });
 
         mExpandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
             @Override
             public void onGroupCollapse(int groupPosition) {
-               // getSupportActionBar().setTitle(R.string.film_genres);
             }
         });
 
+    /*
+     * setting the drawer element click listener to load and display the products as per user selection.
+     */
         mExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 String selectedItem = ((List) (mExpandableListData.get(mExpandableListTitle.get(groupPosition))))
                     .get(childPosition).toString();
-               // getSupportActionBar().setTitle(selectedItem);
 
                 if (items[0].equals(mExpandableListTitle.get(groupPosition))) {
                     int catId = Integer.parseInt(((Categories)mCategories.get(childPosition)).getId());
@@ -167,6 +182,9 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
         });
     }
 
+    /*
+     * setting the drawer element eith child elements loaded from DB.
+     */
     private void setupDrawer() {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
 
@@ -218,6 +236,10 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+     * show products loaded from database .
+     * @Param : products : list of products loaded from DB.
+     */
     @Override
     public void showProducts(List<Products> products) {
         System.out.println("productsList:::"+products.size());
@@ -228,13 +250,20 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
 
     }
 
+    /*
+     * show categories as drawer elements loaded from database .
+     * @Param : categories: list of categoried loaded from DB.
+     */
     @Override
     public void showCategories(List<Categories> categories) {
         mCategories = categories;
         System.out.println("categories:::"+mCategories.size());
     }
 
-
+    /*
+    * set the visibility of spinner while loading content from server and data is not available to display.
+    * @Param : state: visibility state of spinner.
+    */
     @Override
     public void showSpinner(boolean state) {
       if(state){
@@ -244,12 +273,18 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
       }
     }
 
+    /*
+    * show initial content loaded from database .
+    */
     @Override
     public void showInitialData() {
         initItems();
         loadInitialData();
     }
 
+    /*
+    * show rankings as drawer elements loaded from database .
+    */
     @Override
     public void showRankings(List<Rankings> rankings ) {
        mRankings = rankings;
@@ -260,6 +295,10 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
         setupDrawer();
     }
 
+    /*
+    * maintain categories and rankings with respective sub elements to be displayed in drawer .
+    * @Return : expandableListData : Map of drawer element and sub element values.
+    */
     private Map<String, List<String>> getExpandableListData() {
         Map<String, List<String>> expandableListData = new TreeMap<>();
         if(mCategories !=null && mRankings !=null)
@@ -275,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
             categorieslistContent.add(mCategories.get(i).getName());
         }
         for (int i = 0; i < mRankings.size(); i++) {
-            rankingslistContent.add(customiseStatement(mRankings.get(i).getRanking()));
+            rankingslistContent.add(customizeStatement(mRankings.get(i).getRanking()));
         }
 
         expandableListData.put(drawerItems.get(0), categorieslistContent);
@@ -285,6 +324,12 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
         return expandableListData;
     }
 
+    /*
+     * get product id out of ranking selected by user from drawer.
+     * product id will be used to get all product details from DB.
+     * @param : childPosition : position of ranking selected from drawer.
+     * @Return : productIds : array of product ids in the relected ranking.
+     */
     private int[] getRankingProductsIds(int childPosition){
         RankingProducts[] rankingProductsList =((Rankings)mRankings.get(childPosition)).getProducts();
         int[] productIds = new int[rankingProductsList.length];
@@ -294,7 +339,13 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
         return productIds;
     }
 
-    private String customiseStatement(String data){
+    /*
+     * customize text to display first character in capital and rest in lower case.
+     * Because ranking elements are not properly customised . So applied this methos on ranking elements.
+     * @param : data : reanking text received from server and stored in database.
+     * Return: customes string (eg "Most OrdeRed" will be customised as "Most ordered")
+     */
+    private String customizeStatement(String data){
             String firstLetter = data.substring(0,1).toUpperCase();
             String restLetters = data.substring(1).toLowerCase();
             return firstLetter + restLetters;

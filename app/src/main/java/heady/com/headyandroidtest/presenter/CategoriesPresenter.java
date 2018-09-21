@@ -14,6 +14,7 @@ import heady.com.headyandroidtest.view.ProductView;
 
 /**
  * Created by Kajal on 17/09/2018.
+ * Presenter to reteive data from DB and pass it to view interface to be displayed through activity
  */
 
 public class CategoriesPresenter {
@@ -22,6 +23,11 @@ public class CategoriesPresenter {
     private ProductView prodView;
     private Context mContext;
 
+    /*
+     * Intialise CategoriesPresenter instance and interface
+     * @Param view : view through which to display the data in UI.
+     * @Param ctx : activity instance passed from mainActivity class
+     */
     public CategoriesPresenter(CategoriesView view, Context ctx) {
         this.categoriesView = view;
         this.mContext = ctx;
@@ -31,11 +37,17 @@ public class CategoriesPresenter {
         categoriesView.showSpinner(state);
     }
 
+    /*
+     * initialise AsyncTask to retrieve all categories from DB stored in Categories table
+     */
     public void loadCategories() {
         DatabaseTaskRunner runner = new DatabaseTaskRunner();
         runner.execute();
     }
 
+    /*
+     * initialise AsyncTask to retrieve Products based on categoryId from DB stored in Categories table.
+     */
     public void getProductForCategory(ProductView prodView,int catId){
        this.prodView = prodView;
         DatabaseTaskRunnerForCategory runner = new DatabaseTaskRunnerForCategory();
@@ -44,7 +56,9 @@ public class CategoriesPresenter {
     }
 
 
-
+    /*
+     * AsyncTask to retrieve all categories from DB stored in Categories table.
+     */
     private class DatabaseTaskRunner extends AsyncTask<Void, Void, List<Categories>> {
 
 
@@ -60,6 +74,9 @@ public class CategoriesPresenter {
         }
     }
 
+    /*
+     * AsyncTask to retrieve Products based on categoryId from DB stored in Categories table.
+     */
     private class DatabaseTaskRunnerForCategory extends AsyncTask<Integer, Void, List<Products>> {
 
 

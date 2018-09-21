@@ -12,6 +12,7 @@ import heady.com.headyandroidtest.model.Products;
 
 /**
  * Created by Kajal on 9/17/2018.
+ * Dao to handle categories table database querries
  */
 
 

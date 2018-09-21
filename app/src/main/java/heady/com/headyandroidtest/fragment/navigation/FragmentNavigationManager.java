@@ -19,6 +19,8 @@ import heady.com.headyandroidtest.model.Products;
 
 /**
  * Created by Kajal on 9/17/2018.
+ * Fragment Navigation mainager to handle all fragments transitions at common place.
+ * implements NavigationManager to maintian common fragment navigations
  */
 
 public class FragmentNavigationManager implements NavigationManager {

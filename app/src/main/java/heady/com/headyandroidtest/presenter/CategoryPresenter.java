@@ -19,6 +19,7 @@ import retrofit2.Response;
 
 /**
  * Created by Kajal on 17/09/2018.
+ * Presenter to load data from Sever and store them into database.
  */
 
 public class CategoryPresenter {
@@ -27,6 +28,11 @@ public class CategoryPresenter {
     private ApiService apiService;
     private Context mContext;
 
+    /*
+    * Intialise CategoryPresenter instance and interface
+    * @Param view : view through which to display the data in UI.
+    * @Param ctx : activity instance passed from mainActivity class
+    */
     public CategoryPresenter(CategoryView view, Context ctx) {
         this.categoryView = view;
         this.mContext = ctx;
@@ -36,10 +42,17 @@ public class CategoryPresenter {
         }
     }
 
+    /*
+     * display or hide the spinner on UI as per state value (T/F)
+     * @Param state : boolean value to set spinner visibilty
+     */
     public void showSpinner(boolean state){
         categoryView.showSpinner(state);
     }
 
+    /*
+     * method to load data from server and store the in database.
+     */
     public void loadCategory() {
         apiService
                 .getAPI()
@@ -69,6 +82,9 @@ public class CategoryPresenter {
                 });
     }
 
+    /*
+     * AsyncTask to insert the data loaded from server in database.
+     */
     private class DatabaseTaskRunner extends AsyncTask<Category, String, String> {
 
 

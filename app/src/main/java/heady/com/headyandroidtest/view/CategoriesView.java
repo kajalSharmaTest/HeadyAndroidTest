@@ -6,6 +6,7 @@ import heady.com.headyandroidtest.model.Categories;
 
 /**
  * Created by Kajal on 17/09/2018.
+ * Interface to pass categoried data from presenter to View.
  */
 
 public interface CategoriesView {

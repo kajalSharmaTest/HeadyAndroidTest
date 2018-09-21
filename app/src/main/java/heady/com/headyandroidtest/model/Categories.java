@@ -10,6 +10,8 @@ import heady.com.headyandroidtest.util.MyTypeConverters;
 
 /**
  * Created by Kajal on 17/09/2018.
+ * Model class and Entity to be stored in database as an object.
+ * Common object to retrieve Categories object from server and to be stored in dabase also as object.
  */
 @Entity(tableName = "categories")
 public class Categories

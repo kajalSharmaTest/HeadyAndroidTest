@@ -5,6 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Kajal on 17/09/2018.
+ * Class to define retrofit instance for network calls.
  */
 
 public class ApiService {

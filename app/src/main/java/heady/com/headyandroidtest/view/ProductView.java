@@ -6,6 +6,7 @@ import heady.com.headyandroidtest.model.Products;
 
 /**
  * Created by Kajal on 17/09/2018.
+ * Interface to pass Product data from presenter to View.
  */
 
 public interface ProductView {

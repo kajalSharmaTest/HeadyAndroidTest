@@ -15,6 +15,8 @@ import heady.com.headyandroidtest.model.Variants;
 
 /**
  * Created by Kajal on 9/19/2018.
+ * Class MyTypeConverters : Converter class to define the conversions from Object to primitive and ptimitive to Object.
+ * This class is used for conversions of  Objects stores and retrieved in Room databse
  */
 
 public  class MyTypeConverters {
@@ -122,8 +124,4 @@ public  class MyTypeConverters {
         return gson.toJson(someObjects);
     }
 
-//    @TypeConverter
-//    public static String someObjectListToString(RankingProducts[] someObjects) {
-//        return gson.toJson(someObjects);
-//    }
 }

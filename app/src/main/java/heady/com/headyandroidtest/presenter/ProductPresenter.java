@@ -15,6 +15,7 @@ import retrofit2.Callback;
 
 /**
  * Created by Kajal on 17/09/2018.
+ * Presenter to reteive data from DB and pass it to view interface to be displayed through activity
  */
 
 public class ProductPresenter {
@@ -23,6 +24,11 @@ public class ProductPresenter {
     private Context mContext;
 
 
+    /*
+     * Intialise ProductPresenter instance and interface
+     * @Param view : view through which to display the data in UI.
+     * @Param ctx : activity instance passed from mainActivity class
+     */
     public ProductPresenter(ProductView view,Context ctx) {
         this.productView = view;
         this.mContext = ctx;
@@ -34,11 +40,17 @@ public class ProductPresenter {
         productView.showSpinner(state);
     }
 
+    /*
+     * initialise AsyncTask to retrieve all products from DB stored in Products table
+     */
     public void loadProducts() {
         DatabaseTaskRunner runner = new DatabaseTaskRunner();
         runner.execute();
     }
 
+    /*
+    * AsyncTask to retrieve all products from DB stored in Products table.
+    */
     private class DatabaseTaskRunner extends AsyncTask<Void, Void, List<Products>> {
 
 
@@ -54,12 +66,19 @@ public class ProductPresenter {
         }
     }
 
+    /*
+    * initialise AsyncTask to retrieve all products based on prodIds from DB stored in Products table
+    */
     public void getProductAsPerRanking(int[] prodIds){
         DatabaseTaskRunnerForRanking runner = new DatabaseTaskRunnerForRanking();
         runner.execute(prodIds);
 
     }
 
+    /*
+   * AsyncTask to retrieve all products as per product_id captured from ranking from DB stored in Products table.
+   * @Param : list of productIds
+   */
     private class DatabaseTaskRunnerForRanking extends AsyncTask<int[], Void, List<Products>> {
 
 

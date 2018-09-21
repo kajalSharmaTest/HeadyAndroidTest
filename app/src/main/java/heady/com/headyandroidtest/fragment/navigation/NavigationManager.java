@@ -7,7 +7,9 @@ import heady.com.headyandroidtest.model.Products;
 
 /**
  * Created by Kajal on 9/17/2018.
+ * Interface to maintain fragment navigations. It is implemented in FragmentNavigationManager.class.
  */
+
 
 public interface NavigationManager {
 

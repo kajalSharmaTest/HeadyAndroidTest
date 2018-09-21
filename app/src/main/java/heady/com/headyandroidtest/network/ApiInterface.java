@@ -6,6 +6,7 @@ import retrofit2.http.GET;
 
 /**
  * Created by Kajal on 17/09/2018.
+ * API interface to define all network API URLs and API calls at common place.
  */
 public interface ApiInterface {
 
