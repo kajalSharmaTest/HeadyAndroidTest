@@ -78,13 +78,6 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
         mRankingPresenter = new RankingPresenter(this,this);
         mCategoryPresenter.showSpinner(true);
         mCategoryPresenter.loadCategory();
-        initItems();
-        loadInitialData();
-
-
-
-
-
         LayoutInflater inflater = getLayoutInflater();
         View listHeaderView = inflater.inflate(R.layout.nav_header, null, false);
         mExpandableListView.addHeaderView(listHeaderView);
@@ -231,6 +224,7 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
         ArrayList<Products> prodList = new ArrayList<>(products.size());
         prodList.addAll(products);
         selectFirstItemAsDefault(prodList);
+        mCategoryPresenter.showSpinner(false);
 
     }
 
@@ -251,6 +245,12 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
     }
 
     @Override
+    public void showInitialData() {
+        initItems();
+        loadInitialData();
+    }
+
+    @Override
     public void showRankings(List<Rankings> rankings ) {
        mRankings = rankings;
         System.out.println("rankings:::"+mRankings.size());
@@ -258,7 +258,6 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
         mExpandableListTitle = new ArrayList(mExpandableListData.keySet());
         addDrawerItems();
         setupDrawer();
-        mCategoryPresenter.showSpinner(false);
     }
 
     private Map<String, List<String>> getExpandableListData() {
@@ -276,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
             categorieslistContent.add(mCategories.get(i).getName());
         }
         for (int i = 0; i < mRankings.size(); i++) {
-            rankingslistContent.add(mRankings.get(i).getRanking());
+            rankingslistContent.add(customiseStatement(mRankings.get(i).getRanking()));
         }
 
         expandableListData.put(drawerItems.get(0), categorieslistContent);
@@ -294,5 +293,11 @@ public class MainActivity extends AppCompatActivity implements CategoryView,Cate
         }
         return productIds;
     }
+
+    private String customiseStatement(String data){
+            String firstLetter = data.substring(0,1).toUpperCase();
+            String restLetters = data.substring(1).toLowerCase();
+            return firstLetter + restLetters;
+        }
 
 }

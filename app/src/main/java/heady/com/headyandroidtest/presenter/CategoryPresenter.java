@@ -80,6 +80,7 @@ public class CategoryPresenter {
         @Override
         protected void onPostExecute(String result) {
             System.out.println("DB result::"+result);
+            categoryView.showInitialData();
         }
     }
 

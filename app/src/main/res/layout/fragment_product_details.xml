@@ -35,6 +35,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/variants"
+        android:padding="@dimen/layout_padding_default"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"/>
@@ -43,6 +44,7 @@
 <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+    android:padding="@dimen/layout_padding_default"
         android:orientation="vertical">
 
     <TextView
@@ -50,7 +52,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="left"
-        android:padding="10dp"
         android:text="@string/tax"
         android:textSize="15dp"/>
 
@@ -59,7 +60,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="left"
-        android:padding="10dp"
         android:text="@string/tax_value"
         android:textSize="15dp"/>
 

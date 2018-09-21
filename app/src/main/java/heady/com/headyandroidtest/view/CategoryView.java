@@ -11,4 +11,5 @@ import heady.com.headyandroidtest.model.Category;
 public interface CategoryView {
 
     void showSpinner(boolean state);
+    void showInitialData();
 }
