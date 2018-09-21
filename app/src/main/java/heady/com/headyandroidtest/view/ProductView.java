@@ -1,0 +1,16 @@
+package heady.com.headyandroidtest.view;
+
+import java.util.List;
+
+import heady.com.headyandroidtest.model.Products;
+
+/**
+ * Created by Kajal on 17/09/2018.
+ */
+
+public interface ProductView {
+
+    void showProducts(List<Products> products);
+    void showSpinner(boolean state);
+}
+

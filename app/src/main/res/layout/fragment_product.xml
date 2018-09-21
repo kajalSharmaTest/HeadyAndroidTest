@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="heady.com.headyandroidtest.fragment.ProductFragment">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/prod_list_container">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/card_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:id="@+id/no_prod_container">
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:textSize="20dp"
+           android:gravity="center"
+           android:textStyle="bold"
+           android:textColor="@color/colorPrimaryDark"
+           android:text="@string/no_prod_available"
+           />
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

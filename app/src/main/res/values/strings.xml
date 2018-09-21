@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">My Shop</string>
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+
+    <string-array name="drawer_menu_items">
+        <item>Categories</item>
+        <item>Rankings</item>
+    </string-array>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="tax">Tax</string>
+    <string name="tax_value">Value</string>
+    <string name="prod_name">Name : </string>
+    <string name="prod_date_added">Date Added : </string>
+    <string name="prod_color">Color</string>
+    <string name="prod_size">Size</string>
+    <string name="prod_price">Price</string>
+    <string name="no_prod_available">No Product Available</string>
+
+</resources>

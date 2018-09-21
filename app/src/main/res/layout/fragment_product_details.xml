@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+              android:orientation="vertical"
+             tools:context="heady.com.headyandroidtest.fragment.ProductDetailFragment">
+
+
+
+        <ImageView
+            android:id="@+id/prod_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sample_product"
+            />
+    <TextView
+        android:id="@+id/detail_prod_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/layout_padding_default"
+        android:text="@string/prod_name"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:textColor="@color/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/detail_prod_added"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:padding="@dimen/layout_padding_default"
+        android:text="@string/prod_date_added"
+        android:textSize="15dp"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/variants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"/>
+
+
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/detail_prod_tax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:padding="10dp"
+        android:text="@string/tax"
+        android:textSize="15dp"/>
+
+    <TextView
+        android:id="@+id/detail_prod_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:padding="10dp"
+        android:text="@string/tax_value"
+        android:textSize="15dp"/>
+
+
+
+</LinearLayout>
+
+</LinearLayout>
